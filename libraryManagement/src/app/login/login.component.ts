@@ -21,7 +21,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {  
     if((this.userAuthService.isLoggedIn()) )  
     {  
-        this.router.navigate(['/profile' , localStorage.getItem('id')]);  
+        let typ = localStorage.getItem('type');  
+        if(typ=='L'){
+          this.router.navigate(['/adminhome']);  
+        }else{
+          this.router.navigate(['/userhome']);  
+        }
     }  
     else  
     {  
@@ -31,7 +36,7 @@ export class LoginComponent implements OnInit {
   
   // create the form object.  
   form = new FormGroup({  
-    usertype : new FormControl('',Validators.required),
+    type : new FormControl('',Validators.required),
     email : new FormControl('' , Validators.required),  
     password : new FormControl('' , Validators.required)  
   });  
@@ -40,24 +45,32 @@ export class LoginComponent implements OnInit {
   
   Login(LoginInformation)  
   {  
-      this.user.email = this.Email.value;  
+    debugger;
+      this.user.username = this.Email.value;  
       this.user.password = this.Password.value;  
       this.user.type = this.Type.value;
   
       this.userAuthService.login(this.user).subscribe(  
         response => {  
-            let result =  response.json();  
+            let result =  response;  
               
-            if(result > 0)  
+            if(result != null && result != '')  
             {  
-              let token = response.headers.get("Authorization");  
+              let token = result.token;  
   
               localStorage.setItem("token" , token);  
-              localStorage.setItem("id" , result);  
+              localStorage.setItem("username" , this.user.username); 
+              localStorage.setItem("type" , this.user.type); 
+
+              if(this.user.type=='L'){
+                this.router.navigate(['/adminhome']);  
+              }else{
+                this.router.navigate(['/userhome']);  
+              }
     
-              this.router.navigate(['/profile', result]);  
+              
             }  
-            if(result == -1)  
+            else  
             {  
               alert("please register before login Or Invalid combination of Email and password");  
             }  
