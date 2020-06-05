@@ -1,11 +1,11 @@
 <h2>Login</h2>
 <form [formGroup]="form" #LoginInformation (ngSubmit)="Login(LoginInformation)">  
     <div class="row">
-        <label for="username">Login as</label>
+        <label for="type">Login as</label>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        User: <input type="radio" name="type" formControlName="usertype"   />
+        User: <input type="radio" name="type" value="U" formControlName="type"   />
         &nbsp;&nbsp;&nbsp;&nbsp;
-        Librarian: <input type="radio" name="type" formControlName="usertype"  />
+        Librarian: <input type="radio" name="type" value="L" formControlName="type"  />
     </div>
     <div class="row">  
         <div class=" col-md-offset-1 col-md-4">  
