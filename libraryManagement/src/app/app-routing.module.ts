@@ -12,7 +12,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 const routes: Routes = [  
   {  
     path : '',  
-    component : LoginComponent   
+    component : HomeComponent   
   }, 
   {  
     path : 'home',  

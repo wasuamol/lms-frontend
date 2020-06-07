@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   
   Login(LoginInformation)  
   {  
-    debugger;
+    
       this.user.username = this.Email.value;  
       this.user.password = this.Password.value;  
       this.user.type = this.Type.value;

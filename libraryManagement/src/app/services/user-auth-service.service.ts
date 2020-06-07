@@ -49,7 +49,7 @@ export class UserAuthServiceService {
   */
 
   isLoggedIn() {
-    debugger;
+    
     // create an instance of JwtHelper class.  
     let jwtHelper = new JwtHelperService();
 
